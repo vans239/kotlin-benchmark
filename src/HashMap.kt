@@ -1,3 +1,4 @@
+package org
 import java.util.ArrayList
 
 class MyHashMap<K : Any, V : Any> {
@@ -54,7 +55,7 @@ class MyHashMap<K : Any, V : Any> {
 
 }
 
-fun main(args: Array<String>) {
+/*fun main(args: Array<String>) {
     val map = MyHashMap<Int, String>()
     assert(map.size() == 0)
     assert(map.isEmpty())
@@ -69,7 +70,7 @@ fun main(args: Array<String>) {
     }
     assert(map.get(500).equals("500"))
     assert(map.size() == 10000)
-}
+}*/
 
 //todo http://jetbrains.github.io/kotlin/versions/snapshot/apidocs/jet/Boolean.html where is doc?
 //todo why lazyval private?
