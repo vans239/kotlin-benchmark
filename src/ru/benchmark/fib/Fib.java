@@ -1,4 +1,4 @@
-package benchmark.fib;
+package ru.benchmark.fib;
 
 import org.openjdk.jmh.annotations.GenerateMicroBenchmark;
 
@@ -20,7 +20,7 @@ public class Fib {
     }
 
     int fibTernaryIf(int n) {
-        return (n >= 2) ? fibStaticTernaryIf(n - 1) + fibStaticTernaryIf(n - 2) : 1;
+        return (n >= 2) ? fibTernaryIf(n - 1) + fibTernaryIf(n - 2) : 1;
     }
 
     int fibIf(int n) {
@@ -31,22 +31,9 @@ public class Fib {
     }
 
     @GenerateMicroBenchmark
-    public static void fibStaticTernaryBenchmark() {
-        Fib.fibStaticTernaryIf(40);
-    }
+    public void test(){
 
-    @GenerateMicroBenchmark
-    public static void fibStaticIfBenchmark() {
-        Fib.fibStaticIf(40);
-    }
-
-    @GenerateMicroBenchmark
-    public void fibTernaryBenchmark() {
-        fibTernaryIf(40);
-    }
-
-    @GenerateMicroBenchmark
-    public void fibIfBenchmark() {
-        fibIf(40);
     }
 }
+
+

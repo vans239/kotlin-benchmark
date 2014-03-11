@@ -1,4 +1,4 @@
-package org
+package ru.benchmark
 import java.util.ArrayList
 
 class MyHashMap<K : Any, V : Any> {
@@ -72,5 +72,5 @@ class MyHashMap<K : Any, V : Any> {
     assert(map.size() == 10000)
 }*/
 
-//todo http://jetbrains.github.io/kotlin/versions/snapshot/apidocs/jet/Boolean.html where is doc?
+//todo http://jetbrains.github.io/kotlin2/versions/snapshot/apidocs/jet/Boolean.html where is doc?
 //todo why lazyval private?
