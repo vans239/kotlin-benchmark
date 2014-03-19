@@ -19,11 +19,11 @@ public class Fib {
             return 1;
     }
 
-    int fibTernaryIf(int n) {
+    public int fibTernaryIf(int n) {
         return (n >= 2) ? fibTernaryIf(n - 1) + fibTernaryIf(n - 2) : 1;
     }
 
-    int fibIf(int n) {
+    public int fibIf(int n) {
         if (n >= 2)
             return fibIf(n - 1) + fibIf(n - 2);
         else

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF8"?>
+<toolchains>
+    <toolchain>
+        <type>jdk</type>
+        <provides>
+            <version>1.7</version>
+            <vendor>openjdk</vendor>
+            <id>openjdk1.7.0_51</id>
+        </provides>
+        <configuration>
+            <jdkHome>/usr/lib/jvm/java-7-openjdk-amd64</jdkHome>
+        </configuration>
+    </toolchain>
+    <toolchain>
+        <type>jdk</type>
+        <provides>
+            <version>1.7</version>
+            <vendor>openjdk</vendor>
+            <id>openjdk1.6.0_30</id>
+        </provides>
+        <configuration>
+            <jdkHome>/usr/lib/jvm/java-1.6.0-openjdk-amd64</jdkHome>
+        </configuration>
+    </toolchain>
+</toolchains>

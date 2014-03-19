@@ -36,12 +36,41 @@ questions.
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <kotlin.version>0.1-SNAPSHOT</kotlin.version>
+        <jmh.version>0.5.4</jmh.version>
+
+        <!--properties should be overridden-->
+        <kotlin.version>error</kotlin.version>
+        <jdk.version>error</jdk.version>
     </properties>
     <prerequisites>
         <maven>3.0.4</maven>
     </prerequisites>
 
+    <profiles>
+        <profile>
+            <id>run_1.6.30-SNAPSHOT</id>
+            <activation>
+                <property>
+                    <name>run</name>
+                    <value>1.6.30-SNAPSHOT</value>
+                </property>
+            </activation>
+            <properties>
+                <kotlin.version>0.1-SNAPSHOT</kotlin.version>
+                <jdk.version>openjdk1.6.0_30</jdk.version>
+            </properties>
+        </profile>
+        <profile>
+            <id>run_1.7.51-SNAPSHOT</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <kotlin.version>0.1-SNAPSHOT</kotlin.version>
+                <jdk.version>openjdk1.7.0_51</jdk.version>
+            </properties>
+        </profile>
+    </profiles>
 
     <repositories>
         <repository>
@@ -75,12 +104,12 @@ questions.
         <dependency>
             <groupId>org.openjdk.jmh</groupId>
             <artifactId>jmh-core</artifactId>
-            <version>0.5.2</version>
+            <version>${jmh.version}</version>
         </dependency>
         <dependency>
             <groupId>org.openjdk.jmh</groupId>
             <artifactId>jmh-generator-annprocess</artifactId>
-            <version>0.5.2</version>
+            <version>${jmh.version}</version>
             <scope>provided</scope>
         </dependency>
 
@@ -92,6 +121,27 @@ questions.
     </dependencies>
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-toolchains-plugin</artifactId>
+                <version>1.0</version>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>toolchain</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <toolchains>
+                        <jdk>
+                            <id>${jdk.version}</id>
+                        </jdk>
+                    </toolchains>
+                </configuration>
+            </plugin>
+
             <plugin>
                 <artifactId>kotlin-maven-plugin</artifactId>
                 <groupId>org.jetbrains.kotlin</groupId>
@@ -105,7 +155,7 @@ questions.
                         </goals>
                         <configuration>
                             <sourceDirs>
-                                <sourceDir>src</sourceDir>
+                                <sourceDir>src/main/java</sourceDir>
                             </sourceDirs>
                         </configuration>
                     </execution>
@@ -148,7 +198,7 @@ questions.
                         </goals>
                         <configuration>
                             <sources>
-                                <source>src</source>
+                                <!--<source>src/java</source>-->
                                 <source>target/generated-sources/jmh</source>
                             </sources>
                         </configuration>
@@ -193,6 +243,26 @@ questions.
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.2</version>
+                <executions>
+                    <execution>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <executable>java</executable>
+                    <arguments>
+                        <argument>-jar</argument>
+                        <argument>target/microbenchmarks.jar</argument>
+                    </arguments>
+                </configuration>
             </plugin>
         </plugins>
     </build>

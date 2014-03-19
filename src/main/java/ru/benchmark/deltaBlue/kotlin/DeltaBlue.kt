@@ -303,8 +303,8 @@ abstract class Constraint(val strength: Strength) {
     }
 
     public fun print() {
-        val i: Int
-        val outIndex: Int
+//        val i: Int
+//        val outIndex: Int
 
         if (!isSatisfied()) {
             System.out.print("Unsatisfied")
@@ -835,8 +835,7 @@ class Planner() {
 
 //------------------------------------------------------------
 
-/* implements Benchmark */ public class DeltaBlue() {
-
+public class DeltaBlue() {
     private var total_ms: Long = 0
     public fun getRunTime(): Long {
         return total_ms
@@ -855,15 +854,13 @@ class Planner() {
         val startTime = System.currentTimeMillis()
         for (j in 0..iterations - 1) {
             chainTest(100)
-            projectionTest(100)
+            //projectionTest(100)
         }
         val endTime = System.currentTimeMillis()
         total_ms = endTime - startTime
         System.out.println("DeltaBlue\tJava\t" + options + "\t" + iterations + "x\t" + (total_ms.toDouble() / iterations.toDouble()) + " ms")
         System.out.println("DeltaBlue\tJava\t" + options + "\t" + iterations + "x\t" + (iterations.toDouble() / total_ms.toDouble()) + " ms")
     }
-
-
 
     //  This is the standard DeltaBlue benchmark. A long chain of
     //  equality constraints is constructed with a stay constraint on
@@ -878,7 +875,7 @@ class Planner() {
     //  low. Typical situations lie somewhere between these two
     //  extremes.
     //
-    private fun chainTest(n: Int) {
+    public fun chainTest(n: Int) {
         planner = Planner()
 
         var prev: Variable? = null
@@ -918,7 +915,7 @@ class Planner() {
     // time is measured to change a variable on either side of the
     // mapping and to change the scale and offset factors.
     //
-    private fun projectionTest(n: Int) {
+    public fun projectionTest(n: Int) {
         planner = Planner()
 
         val scale = Variable.init("scale", 10)
@@ -970,7 +967,6 @@ class Planner() {
     }
 
     class object {
-
         public var planner: Planner? = null
 
         public fun main(args: Array<String>) {

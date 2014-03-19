@@ -1,0 +1,53 @@
+[INFO] --- kotlin-maven-plugin:0.1-SNAPSHOT:compile (process-sources) @ kotlin-benchmark ---
+[INFO] --- jmh-generator-maven-plugin:0.5.2:generate (default) @ kotlin-benchmark ---
+[INFO] --- build-helper-maven-plugin:1.8:add-source (add-source) @ kotlin-benchmark ---
+[INFO] --- maven-resources-plugin:2.3:resources (default-resources) @ kotlin-benchmark ---
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ kotlin-benchmark ---
+
+
+mvn archetype:generate \
+          -DinteractiveMode=false \
+          -DarchetypeGroupId=org.openjdk.jmh \
+          -DarchetypeArtifactId=jmh-java-benchmark-archetype \
+          -DgroupId=org.sample \
+          -DartifactId=java-test \
+          -Dversion=1.0
+
+
+mvn archetype:generate \
+          -DinteractiveMode=false \
+          -DarchetypeGroupId=org.openjdk.jmh \
+          -DarchetypeArtifactId=jmh-kotlin-benchmark-archetype \
+          -DgroupId=org.sample \
+          -DartifactId=kotlin-test \
+          -Dversion=1.0
+
+
+Bad converting:
+-constructor args
+-Switch/case двойные
+-abstract class few constructors
+-finds strange classes from another package
+-very strange reaction on classes with same name and diff packages
+-no package checks
+-on system.exit don't check next
+
+
+java -jar target/microbenchmarks.jar ".*Fib.*" -wi 5 -f 2 -i 5 -tu ms -bm avgt
+
+o.FibKt.fibIfBenchmark                  avgt        10      392.287       10.848    ms/op
+o.FibKt.fibIfBenchmarkKt                avgt        10      392.787        9.439    ms/op
+o.FibKt.fibStaticIfBenchmark            avgt        10      427.135        2.994    ms/op
+o.FibKt.fibStaticIfBenchmarkKt          avgt        10      387.400        0.733    ms/op
+o.FibKt.fibStaticTernaryBenchmark       avgt        10      430.130        6.261    ms/op
+o.FibKt.fibStaticTernaryBenchmarkKt     avgt        10      387.716        0.882    ms/op
+o.FibKt.fibTernaryBenchmark             avgt        10      390.094        4.023    ms/op
+o.FibKt.fibTernaryBenchmarkKt           avgt        10      387.893        0.820    ms/op
+
+
+
+- Почему не работает компляция вложенного класса
+public class DeltaBlue {
+}
+class A{}
+- Глупый вопрос: если у нас мавен использует snapshot, то его надо вручную иногда удалять из репозитория? чтобы поулчить новую версию?
