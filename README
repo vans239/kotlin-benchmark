@@ -1,6 +1,6 @@
 https://cwiki.apache.org/confluence/display/MAVENOLD/Toolchains
 
-Copy tooclhains.xml to $user.home/.m2
+Copy tooclhains.xml to $user.home/.m2 and change paths to jdks
 
 Usage:
 Our ru.benchmark project uses maven profiles and toolchain plugin for changing environment(jdk, kotlin version).
