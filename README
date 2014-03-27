@@ -3,7 +3,7 @@ https://cwiki.apache.org/confluence/display/MAVENOLD/Toolchains
 Copy tooclhains.xml to $user.home/.m2
 
 Usage:
-Our benchmark project uses maven profiles and toolchain plugin for changing environment(jdk, kotlin version).
+Our ru.benchmark project uses maven profiles and toolchain plugin for changing environment(jdk, kotlin version).
 If you want test some new configuration, you should create profile with properties jdk.version and kotlin.version
 
 Type to run:

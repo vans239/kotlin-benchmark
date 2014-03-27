@@ -1,14 +1,14 @@
-[INFO] --- kotlin-maven-plugin:0.1-SNAPSHOT:compile (process-sources) @ kotlin-benchmark ---
-[INFO] --- jmh-generator-maven-plugin:0.5.2:generate (default) @ kotlin-benchmark ---
-[INFO] --- build-helper-maven-plugin:1.8:add-source (add-source) @ kotlin-benchmark ---
-[INFO] --- maven-resources-plugin:2.3:resources (default-resources) @ kotlin-benchmark ---
-[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ kotlin-benchmark ---
+[INFO] --- kotlin-maven-plugin:0.1-SNAPSHOT:compile (process-sources) @ kotlin-ru.benchmark ---
+[INFO] --- jmh-generator-maven-plugin:0.5.2:generate (default) @ kotlin-ru.benchmark ---
+[INFO] --- build-helper-maven-plugin:1.8:add-source (add-source) @ kotlin-ru.benchmark ---
+[INFO] --- maven-resources-plugin:2.3:resources (default-resources) @ kotlin-ru.benchmark ---
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ kotlin-ru.benchmark ---
 
 
 mvn archetype:generate \
           -DinteractiveMode=false \
           -DarchetypeGroupId=org.openjdk.jmh \
-          -DarchetypeArtifactId=jmh-java-benchmark-archetype \
+          -DarchetypeArtifactId=jmh-java-ru.benchmark-archetype \
           -DgroupId=org.sample \
           -DartifactId=java-test \
           -Dversion=1.0
@@ -17,7 +17,7 @@ mvn archetype:generate \
 mvn archetype:generate \
           -DinteractiveMode=false \
           -DarchetypeGroupId=org.openjdk.jmh \
-          -DarchetypeArtifactId=jmh-kotlin-benchmark-archetype \
+          -DarchetypeArtifactId=jmh-kotlin-ru.benchmark-archetype \
           -DgroupId=org.sample \
           -DartifactId=kotlin-test \
           -Dversion=1.0
@@ -46,8 +46,29 @@ o.FibKt.fibTernaryBenchmarkKt           avgt        10      387.893        0.820
 
 
 
-- Почему не работает компляция вложенного класса
-public class DeltaBlue {
-}
-class A{}
 - Глупый вопрос: если у нас мавен использует snapshot, то его надо вручную иногда удалять из репозитория? чтобы поулчить новую версию?
+- Что мы будем тестировать? новую джаву под старый таргет или под новый?
+
+
+
+Benchmark                                                  (elemCount)   Mode   Samples         Mean   Mean error    Units
+r.b.f.CollectionLooping.passObjectsSum                          100000   avgt         5      102.505        1.443    us/op
+r.b.f.CollectionLooping.passObjectsForEachSimpleNullable        100000   avgt         5      104.717       14.569    us/op
+r.b.f.CollectionLooping.passObjectsForEachSimple                100000   avgt         5      110.951       39.831    us/op
+r.b.f.CollectionLooping.passObjectsIndexed                      100000   avgt         5      116.955        3.580    us/op
+r.b.f.CollectionLooping.passObjectsIndexedNullable              100000   avgt         5      115.438       11.585    us/op
+r.b.f.CollectionLooping.passObjectsReduceNullable               100000   avgt         5      725.064       31.198    us/op
+r.b.f.CollectionLooping.passObjectsReduceNullable2              100000   avgt         5      735.958       58.251    us/op
+r.b.f.CollectionLooping.passObjectsReduce                       100000   avgt         5      742.492       57.105    us/op
+r.b.f.CollectionLooping.passObjectsSumNullable                  100000   avgt         5     1560.723       29.400    us/op
+
+
+[INFO] ------------------------------------------------------------------------
+r.b.f.CollectionLooping.passObjectsForEachSimple          1000   avgt         5        0.957        0.065    us/op
+r.b.f.CollectionLooping.passObjectsForEachSimple         10000   avgt         5        9.075        0.868    us/op
+r.b.f.CollectionLooping.passObjectsForEachSimple        100000   avgt         5       95.909        8.806    us/op
+r.b.f.CollectionLooping.passObjectsIndexed                1000   avgt         5        0.879        0.026    us/op
+r.b.f.CollectionLooping.passObjectsIndexed               10000   avgt         5        8.791        0.054    us/op
+r.b.f.CollectionLooping.passObjectsIndexed              100000   avgt         5       92.694        1.719    us/op
+
+
