@@ -4,6 +4,7 @@ import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.logic.BlackHole;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -49,6 +50,17 @@ public class CollectionLooping {
         double sum= 0;
         for (Double object : objects) {
             sum += object;
+        }
+        bh.consume(sum);
+    }
+
+    @GenerateMicroBenchmark
+    public void passObjectsIterator(BlackHole bh) {
+        double sum= 0;
+        Iterator<Double> it = objects.iterator();
+        //noinspection WhileLoopReplaceableByForEach
+        while (it.hasNext()) {
+            sum += it.next();
         }
         bh.consume(sum);
     }

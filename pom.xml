@@ -65,7 +65,10 @@ questions.
         <profile>
             <id>run_1.7.51-SNAPSHOT</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <property>
+                    <name>run</name>
+                    <value>1.7.51-SNAPSHOT</value>
+                </property>
             </activation>
             <properties>
                 <kotlin.version>0.1-SNAPSHOT</kotlin.version>
@@ -83,6 +86,48 @@ questions.
             </activation>
             <properties>
                 <kotlin.version>0.1-SNAPSHOT</kotlin.version>
+                <jdk.version>oracle1.8.0_b132</jdk.version>
+                <jdk>1.8</jdk>
+            </properties>
+        </profile><profile>
+            <id>run_1.6.30-0.7.270</id>
+            <activation>
+                <property>
+                    <name>run</name>
+                    <value>1.6.30-0.7.270</value>
+                </property>
+            </activation>
+            <properties>
+                <kotlin.version>0.7.270</kotlin.version>
+                <jdk.version>openjdk1.6.0_30</jdk.version>
+                <jdk>1.6</jdk>
+            </properties>
+        </profile>
+        <profile>
+            <id>run_1.7.51-0.7.270</id>
+            <activation>
+                <property>
+                    <name>run</name>
+                    <value>1.7.51-0.7.270</value>
+                </property>
+            </activation>
+            <properties>
+                <kotlin.version>0.7.270</kotlin.version>
+                <jdk.version>openjdk1.7.0_51</jdk.version>
+                <jdk>1.7</jdk>
+            </properties>
+        </profile>
+        <profile>
+            <id>run_1.8.0-0.7.270</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+                <property>
+                    <name>run</name>
+                    <value>1.8.0-0.7.270</value>
+                </property>
+            </activation>
+            <properties>
+                <kotlin.version>0.7.270</kotlin.version>
                 <jdk.version>oracle1.8.0_b132</jdk.version>
                 <jdk>1.8</jdk>
             </properties>
@@ -196,6 +241,7 @@ questions.
                 <configuration>
                     <executable>java</executable>
                     <arguments>
+                        <!--<argument>-XX:+PrintCompilation</argument>-->
                         <argument>-jar</argument>
                         <argument>target/microbenchmarks.jar</argument>
                         <argument>${benchmarkRegexp}</argument>

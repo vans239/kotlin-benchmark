@@ -11,6 +11,9 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>Kotlin</artifactId>
 
+    <properties>
+        <inline>true</inline>
+    </properties>
     <build>
         <plugins>
             <plugin>
@@ -33,6 +36,9 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <inline>${inline}</inline>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.openjdk.jmh</groupId>

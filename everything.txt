@@ -1,10 +1,3 @@
-[INFO] --- kotlin-maven-plugin:0.1-SNAPSHOT:compile (process-sources) @ kotlin-ru.benchmark ---
-[INFO] --- jmh-generator-maven-plugin:0.5.2:generate (default) @ kotlin-ru.benchmark ---
-[INFO] --- build-helper-maven-plugin:1.8:add-source (add-source) @ kotlin-ru.benchmark ---
-[INFO] --- maven-resources-plugin:2.3:resources (default-resources) @ kotlin-ru.benchmark ---
-[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ kotlin-ru.benchmark ---
-
-
 mvn archetype:generate \
           -DinteractiveMode=false \
           -DarchetypeGroupId=org.openjdk.jmh \
@@ -55,20 +48,74 @@ Benchmark                                                  (elemCount)   Mode   
 r.b.f.CollectionLooping.passObjectsSum                          100000   avgt         5      102.505        1.443    us/op
 r.b.f.CollectionLooping.passObjectsForEachSimpleNullable        100000   avgt         5      104.717       14.569    us/op
 r.b.f.CollectionLooping.passObjectsForEachSimple                100000   avgt         5      110.951       39.831    us/op
+r.b.f.CollectionLooping.passObjectsIterator                     100000   avgt         5      113.754       11.217    us/op
 r.b.f.CollectionLooping.passObjectsIndexed                      100000   avgt         5      116.955        3.580    us/op
 r.b.f.CollectionLooping.passObjectsIndexedNullable              100000   avgt         5      115.438       11.585    us/op
 r.b.f.CollectionLooping.passObjectsReduceNullable               100000   avgt         5      725.064       31.198    us/op
 r.b.f.CollectionLooping.passObjectsReduceNullable2              100000   avgt         5      735.958       58.251    us/op
 r.b.f.CollectionLooping.passObjectsReduce                       100000   avgt         5      742.492       57.105    us/op
 r.b.f.CollectionLooping.passObjectsSumNullable                  100000   avgt         5     1560.723       29.400    us/op
-
+r.b.f.CollectionLooping.passObjectsIndexedBh                    100000   avgt         5      191.080        6.537    us/op
 
 [INFO] ------------------------------------------------------------------------
-r.b.f.CollectionLooping.passObjectsForEachSimple          1000   avgt         5        0.957        0.065    us/op
-r.b.f.CollectionLooping.passObjectsForEachSimple         10000   avgt         5        9.075        0.868    us/op
 r.b.f.CollectionLooping.passObjectsForEachSimple        100000   avgt         5       95.909        8.806    us/op
-r.b.f.CollectionLooping.passObjectsIndexed                1000   avgt         5        0.879        0.026    us/op
-r.b.f.CollectionLooping.passObjectsIndexed               10000   avgt         5        8.791        0.054    us/op
 r.b.f.CollectionLooping.passObjectsIndexed              100000   avgt         5       92.694        1.719    us/op
 
 
+
+
+
+
+
+
+
+
+
+
+r.b.f.CollectionLooping.passObjectsForEachSimple                100000  arraylist   avgt         5      107.826        9.497    us/op
+r.b.f.CollectionLooping.passObjectsForEachSimple                100000 linkedlist   avgt         5      362.549       23.053    us/op
+r.b.f.CollectionLooping.passObjectsForEachSimpleNullable        100000  arraylist   avgt         5      106.518        4.314    us/op
+r.b.f.CollectionLooping.passObjectsForEachSimpleNullable        100000 linkedlist   avgt         5      367.388       67.219    us/op
+r.b.f.CollectionLooping.passObjectsIndexed                      100000  arraylist   avgt         5      110.633        3.963    us/op
+r.b.f.CollectionLooping.passObjectsIndexed                      100000 linkedlist   avgt         5  5423896.807   328499.514    us/op
+r.b.f.CollectionLooping.passObjectsIndexedBh                    100000  arraylist   avgt         5      221.068        7.865    us/op
+r.b.f.CollectionLooping.passObjectsIndexedBh                    100000 linkedlist   avgt         5  5452796.888    92016.773    us/op
+r.b.f.CollectionLooping.passObjectsIndexedNullable              100000  arraylist   avgt         5      102.397        3.190    us/op
+r.b.f.CollectionLooping.passObjectsIndexedNullable              100000 linkedlist   avgt         5  5322698.128    76315.973    us/op
+r.b.f.CollectionLooping.passObjectsIterator                     100000  arraylist   avgt         5      109.970       17.927    us/op
+r.b.f.CollectionLooping.passObjectsIterator                     100000 linkedlist   avgt         5      388.917       10.781    us/op
+r.b.f.CollectionLooping.passObjectsReduce                       100000  arraylist   avgt         5      746.086      192.268    us/op
+r.b.f.CollectionLooping.passObjectsReduce                       100000 linkedlist   avgt         5      927.386       87.238    us/op
+r.b.f.CollectionLooping.passObjectsReduceNullable               100000  arraylist   avgt         5      761.063       59.344    us/op
+r.b.f.CollectionLooping.passObjectsReduceNullable               100000 linkedlist   avgt         5      895.286       28.843    us/op
+r.b.f.CollectionLooping.passObjectsReduceSafetyNullable         100000  arraylist   avgt         5      777.582       69.665    us/op
+r.b.f.CollectionLooping.passObjectsReduceSafetyNullable         100000 linkedlist   avgt         5     1074.987       27.405    us/op
+r.b.f.CollectionLooping.passObjectsSum                          100000  arraylist   avgt         5      108.345        5.109    us/op
+r.b.f.CollectionLooping.passObjectsSum                          100000 linkedlist   avgt         5      323.135       20.065    us/op
+r.b.f.CollectionLooping.passObjectsSumNullable                  100000  arraylist   avgt         5     1577.161       95.536    us/op
+r.b.f.CollectionLooping.passObjectsSumNullable                  100000 linkedlist   avgt         5     1897.589      124.041    us/op
+
+false inline
+r.b.f.Inlining.reduceSum           10000   avgt        10       60.304        2.075    us/op
+r.b.f.Inlining.reduceSum          100000   avgt        10      648.650       13.689    us/op
+r.b.f.Inlining.reduceSum         1000000   avgt        10    10151.362      132.064    us/op
+r.b.f.Inlining.reduceSumMy         10000   avgt        10        8.958        0.047    us/op
+r.b.f.Inlining.reduceSumMy        100000   avgt        10       90.599        0.350    us/op
+r.b.f.Inlining.reduceSumMy       1000000   avgt        10     4359.271      300.398    us/op
+
+true inline
+r.b.f.Inlining.reduceSum           10000   avgt        10       62.450       11.401    us/op
+r.b.f.Inlining.reduceSum          100000   avgt        10      687.302       10.430    us/op
+r.b.f.Inlining.reduceSum         1000000   avgt        10   114592.491     1133.519    us/op
+r.b.f.Inlining.reduceSumMy         10000   avgt        10        8.965        0.017    us/op
+r.b.f.Inlining.reduceSumMy        100000   avgt        10       91.640        1.068    us/op
+r.b.f.Inlining.reduceSumMy       1000000   avgt        10     4086.209      124.261    us/op
+
+r.b.f.Inlining.reduceSum           10000   avgt        10       59.404        1.766    us/op
+r.b.f.Inlining.reduceSum          100000   avgt        10      687.378       11.769    us/op
+r.b.f.Inlining.reduceSum         1000000   avgt        10    10207.293       96.077    us/op
+
+
+kotlin.reduceSumMy vs java.reduceSum
+kotlin.reduceSumMy vs kotlin.reduceSum
+inline false vs inline true kotlin.reduceSum

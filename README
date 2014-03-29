@@ -8,3 +8,6 @@ If you want test some new configuration, you should create profile with properti
 
 Type to run:
 mvn integration-test -Drun=1.7.51-SNAPSHOT
+
+read this pdf [Java Microbenchmark Harness - (the lesser of two evils)]
+https://www.google.ru/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=0CC8QFjAB&url=http%3A%2F%2Fshipilev.net%2Ftalks%2Fdevoxx-Nov2013-benchmarking.pdf&ei=xio0U7m5JKSN4ATjtYHgBw&usg=AFQjCNH5I_tDxHDi5ui1oBAsb5HqeT3XZQ&sig2=2ZNZQaoiAu32JqbcfiCKYA

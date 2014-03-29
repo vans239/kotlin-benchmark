@@ -9,6 +9,7 @@ import org.openjdk.jmh.runner.options.ChainedOptionsBuilder
 import ru.benchmark.fib.FibKt
 import org.openjdk.jmh.runner.options.VerboseMode
 import ru.benchmark.deltaBlue.DeltaBlueTest
+import ru.benchmark.functional.Inlining
 
 /**
  * Evgeny Vanslov
@@ -17,9 +18,9 @@ import ru.benchmark.deltaBlue.DeltaBlueTest
 class Benchmark {
     class object {
         private val FORK_COUNT: Int = 1
-        private val MEASURE_COUNT: Int = 8
-        private val WARMUP_COUNT: Int = 9
-        private val TIMEUNIT: TimeUnit = TimeUnit.MILLISECONDS
+        private val MEASURE_COUNT: Int = 10
+        private val WARMUP_COUNT: Int = 10
+        private val TIMEUNIT: TimeUnit = TimeUnit.MICROSECONDS
 
         private fun createEmpty(): ChainedOptionsBuilder {
             return OptionsBuilder()
@@ -40,5 +41,5 @@ class Benchmark {
 //-server -XX:+UnlockDiag  nosticVMOptions '-XX:CompileCommand=print,*Main.main'
 //    -XX:+PrintCompilation  -XX:+UnlockDiagnosticVMOptions -XX:+PrintAssembly
 fun main(args: Array<String>) {
-//    Runner(Benchmark.create(javaClass<FunctionalTest>())).run()
+   Runner(Benchmark.create(javaClass<Inlining>())).run()
 }
