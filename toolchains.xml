@@ -3,30 +3,46 @@
     <toolchain>
         <type>jdk</type>
         <provides>
-            <version>1.7</version>
-            <vendor>openjdk</vendor>
-            <id>openjdk1.7.0_51</id>
-        </provides>
-        <configuration>
-            <jdkHome>/usr/lib/jvm/java-7-openjdk-amd64</jdkHome>
-        </configuration>
-    </toolchain>
-    <toolchain>
-        <type>jdk</type>
-        <provides>
-            <version>1.7</version>
-            <vendor>openjdk</vendor>
             <id>openjdk1.6.0_30</id>
         </provides>
         <configuration>
             <jdkHome>/usr/lib/jvm/java-1.6.0-openjdk-amd64</jdkHome>
         </configuration>
     </toolchain>
+
     <toolchain>
         <type>jdk</type>
         <provides>
-            <version>1.8</version>
-            <vendor>oracle</vendor>
+            <id>openjdk1.7.0_51</id>
+        </provides>
+        <configuration>
+            <jdkHome>/usr/lib/jvm/java-7-openjdk-amd64</jdkHome>
+        </configuration>
+    </toolchain>
+
+    <toolchain>
+        <type>jdk</type>
+        <provides>
+            <id>oracle1.6.0_45</id>
+        </provides>
+        <configuration>
+            <jdkHome>/usr/lib/jvm/java-6-oracle</jdkHome>
+        </configuration>
+    </toolchain>
+
+    <toolchain>
+        <type>jdk</type>
+        <provides>
+            <id>oracle1.7.0_51</id>
+        </provides>
+        <configuration>
+            <jdkHome>/usr/lib/jvm/java-7-oracle</jdkHome>
+        </configuration>
+    </toolchain>
+
+    <toolchain>
+        <type>jdk</type>
+        <provides>
             <id>oracle1.8.0_b132</id>
         </provides>
         <configuration>

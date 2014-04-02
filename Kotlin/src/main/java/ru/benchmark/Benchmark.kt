@@ -9,7 +9,7 @@ import org.openjdk.jmh.runner.options.ChainedOptionsBuilder
 import ru.benchmark.fib.FibKt
 import org.openjdk.jmh.runner.options.VerboseMode
 import ru.benchmark.deltaBlue.DeltaBlueTest
-import ru.benchmark.functional.Inlining
+import ru.benchmark.functional.InliningDouble
 
 /**
  * Evgeny Vanslov
@@ -41,5 +41,6 @@ class Benchmark {
 //-server -XX:+UnlockDiag  nosticVMOptions '-XX:CompileCommand=print,*Main.main'
 //    -XX:+PrintCompilation  -XX:+UnlockDiagnosticVMOptions -XX:+PrintAssembly
 fun main(args: Array<String>) {
-   Runner(Benchmark.create(javaClass<Inlining>())).run()
+    Thread.sleep(1500)
+   Runner(Benchmark.create(javaClass<InliningDouble>())).run()
 }

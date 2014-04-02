@@ -28,12 +28,12 @@ import org.openjdk.jmh.logic.BlackHole
 [BenchmarkMode(Mode.AverageTime)]
 [OutputTimeUnit(TimeUnit.MICROSECONDS)]
 [State(Scope.Thread)]
-public open class Inlining {
+public open class InliningDouble {
 
     private val objects = ArrayList<Double>()
 
-//        [Param("10000", "100000", "1000000")]
-    [Param("1000000")]
+//    [Param("10000", "100000", "1000000")]
+        [Param("1000000")]
     private var elemCount: Int = 0
 
 
@@ -48,7 +48,7 @@ public open class Inlining {
         bh.consume(objects.reduce { a, b -> a + b })
     }
 
-//    [GenerateMicroBenchmark]
+    [GenerateMicroBenchmark]
     public fun reduceSumMy(bh: BlackHole) {
         bh.consume(reduce(objects))
     }
