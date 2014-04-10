@@ -204,6 +204,16 @@ questions.
                         <argument>-jar</argument>
                         <argument>target/microbenchmarks.jar</argument>
                         <argument>${benchmarkRegexp}</argument>
+                        <argument>-wi</argument>
+                        <argument>5</argument>
+                        <argument>-i</argument>
+                        <argument>5</argument>
+                        <argument>-f</argument>
+                        <argument>1</argument>
+                        <argument>-bm</argument>
+                        <argument>avgt</argument>
+                        <argument>-tu</argument>
+                        <argument>us</argument>
                     </arguments>
                 </configuration>
             </plugin>

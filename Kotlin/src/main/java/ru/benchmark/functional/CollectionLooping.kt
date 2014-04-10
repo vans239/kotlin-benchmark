@@ -12,11 +12,7 @@ import java.util.LinkedList
  * @author evans 27.03.14.
  */
 
-[Warmup(iterations = 5, time = 1, timeUnit = TimeUnit.SECONDS)]
-[Measurement(iterations = 5, time = 1, timeUnit = TimeUnit.SECONDS)]
-[Fork(1)]
-[BenchmarkMode(Mode.AverageTime)]
-[OutputTimeUnit(TimeUnit.MICROSECONDS)]
+
 [State(Scope.Thread)]
 public open class CollectionLooping() {
     private var objects : MutableList<Double>? = null

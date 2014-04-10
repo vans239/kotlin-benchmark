@@ -130,32 +130,31 @@ true  1.7+ bad, otherwise good
    2   COMPILE SKIPPED: OSR starts with non-empty stack (not retryable)
 
 
-kotlin inline true
-r.b.f.InliningString.reduceSum         1000000   avgt        10   158077.145      633.212    us/op
-r.b.f.InliningString.reduceSumMy       1000000   avgt        10    31595.702      125.618    us/op
-
-kotlin inline false
-r.b.f.InliningString.reduceSum         1000000   avgt        10    31504.896      464.246    us/op
-r.b.f.InliningString.reduceSumMy       1000000   avgt        10    31652.946      145.028    us/op
-
-java
-r.b.f.InliningString.reduceSumMy       1000000   avgt        10    12988.286      251.485    us/op
+1.8 true
+r.b.f.InliningString.reduceSumMy       1000000   avgt        10    32786.383      434.182    us/op
+1.7 true
+r.b.f.InliningString.reduceSumMy       1000000   avgt        10    33071.258      719.582    us/op
+1.6 true
+r.b.f.InliningString.reduceSumMy       1000000   avgt        10    31290.711      536.845    us/op
 
 
-Выводы:
- - kotlin.reduceSum vs kotlin.reduceSumMy
-    Почему в стандартной библиотеке котлина в функциях map:
-        return mapTo(ArrayList<R>(), transform), а не return mapTo(ArrayList<R>(size()), transform)
-    Эта проблема наблюдается при inline=true, для мап аналогично
-    От инлайна становится все только хуже, смотри сравнение filterMy
-    В снапшоте тоже есть.
+1.6 false
+r.b.f.InliningString.reduceSumMy       1000000   avgt        10    24819.692      413.747    us/op
+1.7 false
+r.b.f.InliningString.reduceSumMy       1000000   avgt        10    31857.115      701.879    us/op
+1.8 false
+r.b.f.InliningString.reduceSumMy       1000000   avgt        10    32471.494      538.401    us/op
 
-    Почему юзается astore 2, а не astore_2
-    ICONST_0 ISTORE 3 какой смысл этих операций? почему не потом?
- - kotlin.reduceSumMy vs java.reduceSumMy
-    Различие в 2 раза по скорости
-    Различие байткода только в checkParameterIsNotNull
-    Что такое JetValueParameter, он deprecated, но создается
-    Влияют ли аннотации на выполняемый код в .class файле?
-    Влияет ли количество меток в байткоде на скорость выполнения?
-    Есть бессмысленные GOTO L16, в нем похоже и бага
+
+1.6 java
+r.b.f.InliningString.reduceSumMy       1000000   avgt        10    25353.706      711.898    us/op
+1.7 java
+r.b.f.InliningString.reduceSumMy       1000000   avgt        10    13115.987      218.462    us/op
+1.8 java
+r.b.f.InliningString.reduceSumMy       1000000   avgt        10    13564.688      324.897    us/op
+
+у 1.6 kotlin время выполнения прыгает от 24 до 32 в зависимости от запуска
+
+
+
+Результат:
