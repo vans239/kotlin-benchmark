@@ -28,8 +28,8 @@ public open class InliningString {
     private val objects = ArrayList<String>()
     private val diffObjects = ArrayList<String>()
 
-            [Param("10000", "100000", "1000000")]
-    //    [Param("1000000")]
+//            [Param("10000", "100000", "1000000")]
+        [Param("1000000")]
 //    [Param("10000")]
     private var elemCount: Int = 0
 
@@ -150,13 +150,13 @@ public open class InliningString {
 
     private var max: String? = null
 
-    [GenerateMicroBenchmark]
-    public fun simpleLambda(bh: BlackHole) {
+//    [GenerateMicroBenchmark]
+    public fun simpleLambdaMax(bh: BlackHole) {
         diffObjects.forEach { s -> if (max == null || s.length > max!!.length) max = s }
         bh.consume(max);
     }
 
-    [GenerateMicroBenchmark]
+//    [GenerateMicroBenchmark]
     public fun simpleForeachMax(bh: BlackHole) {
         for( s in diffObjects){
             if (max == null || s.length > max!!.length) {
@@ -164,5 +164,26 @@ public open class InliningString {
             }
         }
         bh.consume(max);
+    }
+
+
+    //работает медленнее в 2-3 раза из-за постоянного боксинга/анбоксинга boolean из-за лямбды
+    [GenerateMicroBenchmark]
+    public fun simpleLambdaFilter(bh: BlackHole) {
+        val str = "1"
+        val count = diffObjects.count { s -> s.equals(str) }
+        bh.consume( count );
+    }
+
+    [GenerateMicroBenchmark]
+    public fun simpleForeachFilter(bh: BlackHole) {
+        var count = 0
+        val str = "1"
+        for( s in diffObjects){
+            if (str.equals(s)) {
+                ++count
+            }
+        }
+        bh.consume(count);
     }
 }

@@ -156,5 +156,19 @@ r.b.f.InliningString.reduceSumMy       1000000   avgt        10    13564.688    
 у 1.6 kotlin время выполнения прыгает от 24 до 32 в зависимости от запуска
 
 
+1.7 true
+r.b.f.InliningString.simpleForeachFilter         10000   avgt         5       17.637        0.574    us/op
+r.b.f.InliningString.simpleForeachFilter        100000   avgt         5      148.570        4.312    us/op
+r.b.f.InliningString.simpleForeachFilter       1000000   avgt         5     1628.594       98.002    us/op
+
+r.b.f.InliningString.simpleLambdaFilter       1000000   avgt         5      5986.933      112.205    us/op
+
 
 Результат:
+simpleLambdaFilter
+    INVOKEVIRTUAL java/lang/String.equals (Ljava/lang/Object;)Z
+   L11
+    GOTO L12
+   L13
+   L12
+    INVOKESTATIC java/lang/Boolean.valueOf (Z)Ljava/lang/Boolean;
