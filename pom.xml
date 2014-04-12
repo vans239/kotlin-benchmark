@@ -200,7 +200,7 @@ questions.
                 <configuration>
                     <executable>java</executable>
                     <arguments>
-                        <!--<argument>-XX:+PrintCompilation</argument>-->
+                        <argument>-XX:+PrintCompilation</argument>
                         <argument>-jar</argument>
                         <argument>target/microbenchmarks.jar</argument>
                         <argument>${benchmarkRegexp}</argument>

@@ -25,12 +25,13 @@ import org.openjdk.jmh.logic.BlackHole
 [State(Scope.Thread)]
 public open class InliningString {
 
+
     private val objects = ArrayList<String>()
-    private val diffObjects = ArrayList<String>()
+    private val diffObjects = LinkedList<String>()
 
 //            [Param("10000", "100000", "1000000")]
-        [Param("1000000")]
-//    [Param("10000")]
+//        [Param("1000000")]
+    [Param("10000")]
     private var elemCount: Int = 0
 
 
@@ -61,9 +62,15 @@ public open class InliningString {
         bh.consume(map(objects));
     }
 
-    //    [GenerateMicroBenchmark]
+    [GenerateMicroBenchmark]
     public fun filterEmpty(bh: BlackHole) {
         bh.consume(diffObjects.filter { a -> !a.isEmpty() });
+    }
+
+    [GenerateMicroBenchmark]
+    public fun filterEmptyOSR(bh: BlackHole) {
+        val list = diffObjects.filter { a -> !a.isEmpty() }
+        bh.consume(list);
     }
 
     //    [GenerateMicroBenchmark]
@@ -168,14 +175,14 @@ public open class InliningString {
 
 
     //работает медленнее в 2-3 раза из-за постоянного боксинга/анбоксинга boolean из-за лямбды
-    [GenerateMicroBenchmark]
+//    [GenerateMicroBenchmark]
     public fun simpleLambdaFilter(bh: BlackHole) {
         val str = "1"
         val count = diffObjects.count { s -> s.equals(str) }
         bh.consume( count );
     }
 
-    [GenerateMicroBenchmark]
+//    [GenerateMicroBenchmark]
     public fun simpleForeachFilter(bh: BlackHole) {
         var count = 0
         val str = "1"

@@ -164,11 +164,18 @@ r.b.f.InliningString.simpleForeachFilter       1000000   avgt         5     1628
 r.b.f.InliningString.simpleLambdaFilter       1000000   avgt         5      5986.933      112.205    us/op
 
 
+r.b.f.InliningWins.oneFilterInline       1000000   avgt         5    36102.616     3379.595    us/op
+
 Результат:
-simpleLambdaFilter
+    - simpleLambdaFilter
     INVOKEVIRTUAL java/lang/String.equals (Ljava/lang/Object;)Z
    L11
     GOTO L12
    L13
    L12
     INVOKESTATIC java/lang/Boolean.valueOf (Z)Ljava/lang/Boolean;
+
+    - filterEmpty vs filterEmptyOSR - пока не отработал jit разница огромная, потом одинаково все. Для LinkedList все также
+
+    -
+        inline в java 1.6 работает лучше , чем в 1.8
