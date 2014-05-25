@@ -16,9 +16,16 @@ inline - is inline (for kotlin only). default - true
 profile - some profile for running. Explains environment.
 
 For example:
-mvn -f Kotlin/pom.xml clean integration-test -DbenchmarkRegexp=.*Inlining.* -Drun=1.8-0.7.270 -Dinline=true
+mvn -f Kotlin/pom.xml clean integration-test -DbenchmarkRegexp=.*InliningWins.* -Drun=1.8-0.7.270 -Dinline=true
 
 
 read this pdf [Java Microbenchmark Harness - (the lesser of two evils)]
 https://www.google.ru/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=0CC8QFjAB&url=http%3A%2F%2Fshipilev.net%2Ftalks%2Fdevoxx-Nov2013-benchmarking.pdf&ei=xio0U7m5JKSN4ATjtYHgBw&usg=AFQjCNH5I_tDxHDi5ui1oBAsb5HqeT3XZQ&sig2=2ZNZQaoiAu32JqbcfiCKYA
 
+
+Бессмысленные jump  twoFiltersInline2_1 inline
+   L7
+   L12
+   GOTO L13
+   L14
+   L13

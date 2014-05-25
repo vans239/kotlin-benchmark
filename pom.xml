@@ -42,6 +42,8 @@ questions.
         <kotlin.version>error</kotlin.version>
         <jdk.version>error</jdk.version>
         <benchmarkRegexp>.*</benchmarkRegexp>
+        <wi>4</wi>
+        <i>4</i>
     </properties>
     <prerequisites>
         <maven>3.0.4</maven>
@@ -87,6 +89,49 @@ questions.
             </activation>
             <properties>
                 <kotlin.version>0.7.270</kotlin.version>
+                <jdk.version>oracle1.8.0_b132</jdk.version>
+                <jdk>1.8</jdk>
+            </properties>
+        </profile>
+        <profile>
+            <id>run_1.6-0.1-SNAPSHOT</id>
+            <activation>
+                <property>
+                    <name>run</name>
+                    <value>1.6-0.1-SNAPSHOT</value>
+                </property>
+            </activation>
+            <properties>
+                <kotlin.version>0.1-SNAPSHOT</kotlin.version>
+                <jdk.version>oracle1.6.0_45</jdk.version>
+                <jdk>1.6</jdk>
+            </properties>
+        </profile>
+        <profile>
+            <id>run_1.7-0.1-SNAPSHOT</id>
+            <activation>
+                <property>
+                    <name>run</name>
+                    <value>1.7-0.1-SNAPSHOT</value>
+                </property>
+            </activation>
+            <properties>
+                <kotlin.version>0.1-SNAPSHOT</kotlin.version>
+                <jdk.version>oracle1.7.0_51</jdk.version>
+                <jdk>1.7</jdk>
+            </properties>
+        </profile>
+        <profile>
+            <id>run_1.8-0.1-SNAPSHOT</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+                <property>
+                    <name>run</name>
+                    <value>1.8-0.1-SNAPSHOT</value>
+                </property>
+            </activation>
+            <properties>
+                <kotlin.version>0.1-SNAPSHOT</kotlin.version>
                 <jdk.version>oracle1.8.0_b132</jdk.version>
                 <jdk>1.8</jdk>
             </properties>
@@ -200,23 +245,35 @@ questions.
                 <configuration>
                     <executable>java</executable>
                     <arguments>
-                        <argument>-XX:+PrintCompilation</argument>
+                        <!--<argument>-XX:+PrintCompilation</argument>-->
+                        <!--<argument>-XX:MaxInlineSize=10</argument>-->
+                        <!--<argument>-XX:+UnlockDiagnosticVMOptions</argument>-->
+                        <!--<argument>-XX:+AggressiveOpts</argument>-->
+                        <!--<argument>-XX:+PrintInlining</argument>-->
                         <argument>-jar</argument>
                         <argument>target/microbenchmarks.jar</argument>
                         <argument>${benchmarkRegexp}</argument>
                         <argument>-wi</argument>
-                        <argument>5</argument>
+                        <argument>${wi}</argument>
                         <argument>-i</argument>
-                        <argument>5</argument>
+                        <argument>${i}</argument>
                         <argument>-f</argument>
                         <argument>1</argument>
                         <argument>-bm</argument>
                         <argument>avgt</argument>
-                        <argument>-tu</argument>
-                        <argument>us</argument>
+                        <!--<argument>-tu</argument>-->
+                        <!--<argument>us</argument>-->
+                        <!--<argument>-o</argument>-->
+                        <!--<argument>result.log</argument>-->
                     </arguments>
                 </configuration>
             </plugin>
         </plugins>
     </build>
 </project>
+
+<!--
+for i in forks
+        create jvm
+        warmup
+        iterate-->

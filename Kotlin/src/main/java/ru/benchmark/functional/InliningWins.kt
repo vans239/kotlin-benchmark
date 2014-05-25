@@ -16,6 +16,7 @@ import java.util.ArrayList
 import java.util.LinkedList
 import org.openjdk.jmh.annotations.GenerateMicroBenchmark
 import org.openjdk.jmh.logic.BlackHole
+import java.util.HashSet
 
 /**
  * @author evans
@@ -28,20 +29,20 @@ public open class InliningWins {
 
 
     private val objects = ArrayList<String>()
-    private val diffObjects = LinkedList<String>()
+    private val diffObjects = ArrayList<String>()
 
-    //                [Param("10000", "100000", "1000000")]
-    [Param("1000000")]
-    //    [Param("10000")]
+    //    Param("100", "1000", "10000", "50000", "100000", "1000000", "5000000")
+//            [Param("100000","200000","300000","400000", "500000", "1000000")]
+    [Param("10000000")]
     private var elemCount: Int = 0
 
     [Setup]
     public fun setup() {
         (0..elemCount).forEach { objects.add("") }
-        (0..elemCount).forEach { diffObjects.add(""); diffObjects.add("1") }
+        (0..elemCount).forEach { i -> diffObjects.add(i.toString()) }
     }
 
-    //    [GenerateMicroBenchmark]
+//            [GenerateMicroBenchmark]
     public fun batchFilterInline(bh: BlackHole) {
         val r1 = diffObjects.inlineFilter { item -> !item.isEmpty() }
         bh.consume(r1);
@@ -57,7 +58,7 @@ public open class InliningWins {
         bh.consume(r6);
     }
 
-    //    [GenerateMicroBenchmark]
+//        [GenerateMicroBenchmark]
     public fun batchFilterNonInline(bh: BlackHole) {
         val r1 = diffObjects.nonInlineFilter { item -> !item.isEmpty() }
         bh.consume(r1);
@@ -73,7 +74,7 @@ public open class InliningWins {
         bh.consume(r6);
     }
 
-    //    [GenerateMicroBenchmark]
+//        [GenerateMicroBenchmark]
     public fun batchFilterNonInlineWithoutClassMethod(bh: BlackHole) {
         val r1 = nonInlineFilter(diffObjects) { item -> !item.isEmpty() }
         bh.consume(r1);
@@ -93,12 +94,34 @@ public open class InliningWins {
     /**
      * This method works slower with inlining for 25%
      */
-    [GenerateMicroBenchmark]
+        [GenerateMicroBenchmark]
     public fun twoFiltersInline(bh1: BlackHole, bh2: BlackHole) {
-        val r2 = diffObjects.inlineFilter { item -> item == "" }
+        val r2 = diffObjects.inlineFilter{ (item : String) -> item == "" }
         bh1.consume(r2);
-        val r3 = diffObjects.inlineFilter { item -> item == "1" }
+        val r3 = diffObjects.inlineFilter{ (item : String) -> item == "" }
         bh2.consume(r3);
+    }
+
+//    [GenerateMicroBenchmark]
+    public fun twoFiltersInlineCached(bh1: BlackHole, bh2: BlackHole) {
+        val func = { (item : String) -> item == "" }
+        val r2 = diffObjects.inlineFilter(func)
+        bh1.consume(r2);
+        val r3 = diffObjects.inlineFilter(func)
+        bh2.consume(r3);
+    }
+
+
+
+    //        [GenerateMicroBenchmark]
+    public fun twoFiltersInline1(bh1: BlackHole, bh2: BlackHole) {
+        val r3 = diffObjects.inlineFilter { item -> item == "" }
+        bh2.consume(r3);
+    }
+
+    public inline fun <T> Iterable<T>.inlineFilter2(): Unit {
+        for (item in this) {
+        }
     }
 
     public inline fun <T> Iterable<T>.inlineFilter(predicate: (T) -> Boolean): List<T> {
@@ -125,3 +148,4 @@ public open class InliningWins {
         return list
     }
 }
+

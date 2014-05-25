@@ -1,181 +1,70 @@
-mvn archetype:generate \
-          -DinteractiveMode=false \
-          -DarchetypeGroupId=org.openjdk.jmh \
-          -DarchetypeArtifactId=jmh-java-ru.benchmark-archetype \
-          -DgroupId=org.sample \
-          -DartifactId=java-test \
-          -Dversion=1.0
+Запустил inlining wins на 1000000 - 400 тестов. Ничего не изменилось. Надо запустить на ночь
+
+true
+r.b.f.InliningWins.twoFiltersInline             1000000   avgt      1000    22277.046        7.628    us/op
+r.b.f.InliningWins.twoFiltersInlineCached       1000000   avgt      1000    19650.755       10.085    us/op
+
+false
+Benchmark                                   (elemCount)   Mode   Samples         Mean   Mean error    Units
+r.b.f.InliningWins.twoFiltersInline             1000000   avgt         4    18043.000      319.267    us/op
+r.b.f.InliningWins.twoFiltersInlineCached       1000000   avgt         4    18330.878      422.502    us/op
 
 
-mvn archetype:generate \
-          -DinteractiveMode=false \
-          -DarchetypeGroupId=org.openjdk.jmh \
-          -DarchetypeArtifactId=jmh-kotlin-ru.benchmark-archetype \
-          -DgroupId=org.sample \
-          -DartifactId=kotlin-test \
-          -Dversion=1.0
+twoFiltersInlineCached при больших значениях всегда быстрее
 
+true
+r.b.f.InliningWins.twoFiltersInline              100000   avgt         4     1048.862       18.689    us/op
+r.b.f.InliningWins.twoFiltersInline              200000   avgt         4     3524.813      145.159    us/op
+r.b.f.InliningWins.twoFiltersInline              300000   avgt         4     5471.541      103.404    us/op
+r.b.f.InliningWins.twoFiltersInline              400000   avgt         4     8308.201      137.646    us/op
+r.b.f.InliningWins.twoFiltersInline              500000   avgt         4    10261.842       95.369    us/op
+r.b.f.InliningWins.twoFiltersInline             1000000   avgt         4    20421.296      290.262    us/op
+r.b.f.InliningWins.twoFiltersInlineCached        100000   avgt         4     1062.061      269.034    us/op
+r.b.f.InliningWins.twoFiltersInlineCached        200000   avgt         4     3112.296       66.033    us/op
+r.b.f.InliningWins.twoFiltersInlineCached        300000   avgt         4     5390.251      121.014    us/op
+r.b.f.InliningWins.twoFiltersInlineCached        400000   avgt         4     7297.494      197.051    us/op
+r.b.f.InliningWins.twoFiltersInlineCached        500000   avgt         4     8576.089      137.479    us/op
+r.b.f.InliningWins.twoFiltersInlineCached       1000000   avgt         4    19499.758      327.267    us/op
 
-Bad converting:
--constructor args
--Switch/case двойные
--abstract class few constructors
--finds strange classes from another package
--very strange reaction on classes with same name and diff packages
--no package checks
--on system.exit don't check next
+false
+r.b.f.InliningWins.twoFiltersInline              100000   avgt         4      978.934      342.582    us/op
+r.b.f.InliningWins.twoFiltersInline              200000   avgt         4     3151.592       50.031    us/op
+r.b.f.InliningWins.twoFiltersInline              300000   avgt         4     4974.922      308.060    us/op
+r.b.f.InliningWins.twoFiltersInline              400000   avgt         4     6665.722      155.763    us/op
+r.b.f.InliningWins.twoFiltersInline              500000   avgt         4     9367.175      287.962    us/op
+r.b.f.InliningWins.twoFiltersInline             1000000   avgt         4    17912.165      820.881    us/op
+r.b.f.InliningWins.twoFiltersInlineCached        100000   avgt         4      980.919      322.642    us/op
+r.b.f.InliningWins.twoFiltersInlineCached        200000   avgt         4     2637.162       69.287    us/op
+r.b.f.InliningWins.twoFiltersInlineCached        300000   avgt         4     5148.803       68.525    us/op
+r.b.f.InliningWins.twoFiltersInlineCached        400000   avgt         4     6580.929      310.796    us/op
+r.b.f.InliningWins.twoFiltersInlineCached        500000   avgt         4     9316.989      263.459    us/op
+r.b.f.InliningWins.twoFiltersInlineCached       1000000   avgt         4    17835.986      540.948    us/op
 
+1/7 false
+r.b.f.InliningWins.twoFiltersInline              100000   avgt         4     1925.218       68.237    us/op
+r.b.f.InliningWins.twoFiltersInline              200000   avgt         4     2821.039       36.979    us/op
+r.b.f.InliningWins.twoFiltersInline              300000   avgt         4     6035.831       63.780    us/op
+r.b.f.InliningWins.twoFiltersInline              400000   avgt         4     8773.061      142.202    us/op
+r.b.f.InliningWins.twoFiltersInline              500000   avgt         4     9615.082     1141.803    us/op
+r.b.f.InliningWins.twoFiltersInline             1000000   avgt         4    19569.115      497.677    us/op
+r.b.f.InliningWins.twoFiltersInlineCached        100000   avgt         4     1320.158       65.788    us/op
+r.b.f.InliningWins.twoFiltersInlineCached        200000   avgt         4     2742.710       52.676    us/op
+r.b.f.InliningWins.twoFiltersInlineCached        300000   avgt         4     6029.174       89.255    us/op
+r.b.f.InliningWins.twoFiltersInlineCached        400000   avgt         4     8693.109      187.572    us/op
+r.b.f.InliningWins.twoFiltersInlineCached        500000   avgt         4     9251.667      189.850    us/op
+r.b.f.InliningWins.twoFiltersInlineCached       1000000   avgt         4    18315.139      435.072    us/op
 
-java -jar target/microbenchmarks.jar ".*Fib.*" -wi 5 -f 2 -i 5 -tu ms -bm avgt
+1/7 true
+r.b.f.InliningWins.twoFiltersInline              100000   avgt         4     1735.571      112.533    us/op
+r.b.f.InliningWins.twoFiltersInline              200000   avgt         4     4864.015       80.554    us/op
+r.b.f.InliningWins.twoFiltersInline              300000   avgt         4     6275.210      144.166    us/op
+r.b.f.InliningWins.twoFiltersInline              400000   avgt         4     8997.481      290.796    us/op
+r.b.f.InliningWins.twoFiltersInline              500000   avgt         4    10094.659      153.256    us/op
+r.b.f.InliningWins.twoFiltersInline             1000000   avgt         4    21639.185      355.195    us/op
+r.b.f.InliningWins.twoFiltersInlineCached        100000   avgt         4     1565.363       24.572    us/op
+r.b.f.InliningWins.twoFiltersInlineCached        200000   avgt         4     4837.379       20.278    us/op
+r.b.f.InliningWins.twoFiltersInlineCached        300000   avgt         4     6141.829      206.037    us/op
+r.b.f.InliningWins.twoFiltersInlineCached        400000   avgt         4     8789.501      142.678    us/op
+r.b.f.InliningWins.twoFiltersInlineCached        500000   avgt         4     9848.951      616.245    us/op
+r.b.f.InliningWins.twoFiltersInlineCached       1000000   avgt         4    19371.119      181.252    us/op
 
-o.FibKt.fibIfBenchmark                  avgt        10      392.287       10.848    ms/op
-o.FibKt.fibIfBenchmarkKt                avgt        10      392.787        9.439    ms/op
-o.FibKt.fibStaticIfBenchmark            avgt        10      427.135        2.994    ms/op
-o.FibKt.fibStaticIfBenchmarkKt          avgt        10      387.400        0.733    ms/op
-o.FibKt.fibStaticTernaryBenchmark       avgt        10      430.130        6.261    ms/op
-o.FibKt.fibStaticTernaryBenchmarkKt     avgt        10      387.716        0.882    ms/op
-o.FibKt.fibTernaryBenchmark             avgt        10      390.094        4.023    ms/op
-o.FibKt.fibTernaryBenchmarkKt           avgt        10      387.893        0.820    ms/op
-
-
-
-- Глупый вопрос: если у нас мавен использует snapshot, то его надо вручную иногда удалять из репозитория? чтобы поулчить новую версию?
-- Что мы будем тестировать? новую джаву под старый таргет или под новый?
-
-
-
-Benchmark                                                  (elemCount)   Mode   Samples         Mean   Mean error    Units
-r.b.f.CollectionLooping.passObjectsSum                          100000   avgt         5      102.505        1.443    us/op
-r.b.f.CollectionLooping.passObjectsForEachSimpleNullable        100000   avgt         5      104.717       14.569    us/op
-r.b.f.CollectionLooping.passObjectsForEachSimple                100000   avgt         5      110.951       39.831    us/op
-r.b.f.CollectionLooping.passObjectsIterator                     100000   avgt         5      113.754       11.217    us/op
-r.b.f.CollectionLooping.passObjectsIndexed                      100000   avgt         5      116.955        3.580    us/op
-r.b.f.CollectionLooping.passObjectsIndexedNullable              100000   avgt         5      115.438       11.585    us/op
-r.b.f.CollectionLooping.passObjectsReduceNullable               100000   avgt         5      725.064       31.198    us/op
-r.b.f.CollectionLooping.passObjectsReduceNullable2              100000   avgt         5      735.958       58.251    us/op
-r.b.f.CollectionLooping.passObjectsReduce                       100000   avgt         5      742.492       57.105    us/op
-r.b.f.CollectionLooping.passObjectsSumNullable                  100000   avgt         5     1560.723       29.400    us/op
-r.b.f.CollectionLooping.passObjectsIndexedBh                    100000   avgt         5      191.080        6.537    us/op
-
-[INFO] ------------------------------------------------------------------------
-r.b.f.CollectionLooping.passObjectsForEachSimple        100000   avgt         5       95.909        8.806    us/op
-r.b.f.CollectionLooping.passObjectsIndexed              100000   avgt         5       92.694        1.719    us/op
-
-
-
-
-
-
-
-
-
-
-
-
-r.b.f.CollectionLooping.passObjectsForEachSimple                100000  arraylist   avgt         5      107.826        9.497    us/op
-r.b.f.CollectionLooping.passObjectsForEachSimple                100000 linkedlist   avgt         5      362.549       23.053    us/op
-r.b.f.CollectionLooping.passObjectsForEachSimpleNullable        100000  arraylist   avgt         5      106.518        4.314    us/op
-r.b.f.CollectionLooping.passObjectsForEachSimpleNullable        100000 linkedlist   avgt         5      367.388       67.219    us/op
-r.b.f.CollectionLooping.passObjectsIndexed                      100000  arraylist   avgt         5      110.633        3.963    us/op
-r.b.f.CollectionLooping.passObjectsIndexed                      100000 linkedlist   avgt         5  5423896.807   328499.514    us/op
-r.b.f.CollectionLooping.passObjectsIndexedBh                    100000  arraylist   avgt         5      221.068        7.865    us/op
-r.b.f.CollectionLooping.passObjectsIndexedBh                    100000 linkedlist   avgt         5  5452796.888    92016.773    us/op
-r.b.f.CollectionLooping.passObjectsIndexedNullable              100000  arraylist   avgt         5      102.397        3.190    us/op
-r.b.f.CollectionLooping.passObjectsIndexedNullable              100000 linkedlist   avgt         5  5322698.128    76315.973    us/op
-r.b.f.CollectionLooping.passObjectsIterator                     100000  arraylist   avgt         5      109.970       17.927    us/op
-r.b.f.CollectionLooping.passObjectsIterator                     100000 linkedlist   avgt         5      388.917       10.781    us/op
-r.b.f.CollectionLooping.passObjectsReduce                       100000  arraylist   avgt         5      746.086      192.268    us/op
-r.b.f.CollectionLooping.passObjectsReduce                       100000 linkedlist   avgt         5      927.386       87.238    us/op
-r.b.f.CollectionLooping.passObjectsReduceNullable               100000  arraylist   avgt         5      761.063       59.344    us/op
-r.b.f.CollectionLooping.passObjectsReduceNullable               100000 linkedlist   avgt         5      895.286       28.843    us/op
-r.b.f.CollectionLooping.passObjectsReduceSafetyNullable         100000  arraylist   avgt         5      777.582       69.665    us/op
-r.b.f.CollectionLooping.passObjectsReduceSafetyNullable         100000 linkedlist   avgt         5     1074.987       27.405    us/op
-r.b.f.CollectionLooping.passObjectsSum                          100000  arraylist   avgt         5      108.345        5.109    us/op
-r.b.f.CollectionLooping.passObjectsSum                          100000 linkedlist   avgt         5      323.135       20.065    us/op
-r.b.f.CollectionLooping.passObjectsSumNullable                  100000  arraylist   avgt         5     1577.161       95.536    us/op
-r.b.f.CollectionLooping.passObjectsSumNullable                  100000 linkedlist   avgt         5     1897.589      124.041    us/op
-
-false inline
-r.b.f.Inlining.reduceSum           10000   avgt        10       60.304        2.075    us/op
-r.b.f.Inlining.reduceSum          100000   avgt        10      648.650       13.689    us/op
-r.b.f.Inlining.reduceSum         1000000   avgt        10    10151.362      132.064    us/op
-r.b.f.Inlining.reduceSumMy         10000   avgt        10        8.958        0.047    us/op
-r.b.f.Inlining.reduceSumMy        100000   avgt        10       90.599        0.350    us/op
-r.b.f.Inlining.reduceSumMy       1000000   avgt        10     4359.271      300.398    us/op
-
-true inline
-r.b.f.Inlining.reduceSum           10000   avgt        10       62.450       11.401    us/op
-r.b.f.Inlining.reduceSum          100000   avgt        10      687.302       10.430    us/op
-r.b.f.Inlining.reduceSum         1000000   avgt        10   114592.491     1133.519    us/op
-r.b.f.Inlining.reduceSumMy         10000   avgt        10        8.965        0.017    us/op
-r.b.f.Inlining.reduceSumMy        100000   avgt        10       91.640        1.068    us/op
-r.b.f.Inlining.reduceSumMy       1000000   avgt        10     4086.209      124.261    us/op
-
-r.b.f.Inlining.reduceSum           10000   avgt        10       59.404        1.766    us/op
-r.b.f.Inlining.reduceSum          100000   avgt        10      687.378       11.769    us/op
-r.b.f.Inlining.reduceSum         1000000   avgt        10    10207.293       96.077    us/op
-
-
-1) kotlin.reduceSumMy vs java.reduceSum
-2) kotlin.reduceSumMy vs kotlin.reduceSum
-
-3) inline false vs inline true kotlin.reduceSum
-true  1.7+ bad, otherwise good
-
-4) enable inline button
-
-
-
-    441    2 %           ru.benchmark.functional.InliningDouble::reduceSum @ 60 (124 bytes)
-   2   COMPILE SKIPPED: OSR starts with non-empty stack (not retryable)
-
-
-1.8 true
-r.b.f.InliningString.reduceSumMy       1000000   avgt        10    32786.383      434.182    us/op
-1.7 true
-r.b.f.InliningString.reduceSumMy       1000000   avgt        10    33071.258      719.582    us/op
-1.6 true
-r.b.f.InliningString.reduceSumMy       1000000   avgt        10    31290.711      536.845    us/op
-
-
-1.6 false
-r.b.f.InliningString.reduceSumMy       1000000   avgt        10    24819.692      413.747    us/op
-1.7 false
-r.b.f.InliningString.reduceSumMy       1000000   avgt        10    31857.115      701.879    us/op
-1.8 false
-r.b.f.InliningString.reduceSumMy       1000000   avgt        10    32471.494      538.401    us/op
-
-
-1.6 java
-r.b.f.InliningString.reduceSumMy       1000000   avgt        10    25353.706      711.898    us/op
-1.7 java
-r.b.f.InliningString.reduceSumMy       1000000   avgt        10    13115.987      218.462    us/op
-1.8 java
-r.b.f.InliningString.reduceSumMy       1000000   avgt        10    13564.688      324.897    us/op
-
-у 1.6 kotlin время выполнения прыгает от 24 до 32 в зависимости от запуска
-
-
-1.7 true
-r.b.f.InliningString.simpleForeachFilter         10000   avgt         5       17.637        0.574    us/op
-r.b.f.InliningString.simpleForeachFilter        100000   avgt         5      148.570        4.312    us/op
-r.b.f.InliningString.simpleForeachFilter       1000000   avgt         5     1628.594       98.002    us/op
-
-r.b.f.InliningString.simpleLambdaFilter       1000000   avgt         5      5986.933      112.205    us/op
-
-
-r.b.f.InliningWins.oneFilterInline       1000000   avgt         5    36102.616     3379.595    us/op
-
-Результат:
-    - simpleLambdaFilter
-    INVOKEVIRTUAL java/lang/String.equals (Ljava/lang/Object;)Z
-   L11
-    GOTO L12
-   L13
-   L12
-    INVOKESTATIC java/lang/Boolean.valueOf (Z)Ljava/lang/Boolean;
-
-    - filterEmpty vs filterEmptyOSR - пока не отработал jit разница огромная, потом одинаково все. Для LinkedList все также
-
-    -
-        inline в java 1.6 работает лучше , чем в 1.8

@@ -134,7 +134,6 @@ public open class InliningString {
         return list
     }
 
-    private fun id(s: String): String = s
 
     //exact realization of reduce in kotlin
     private fun reduce(iterable: Iterable<String>): String {
