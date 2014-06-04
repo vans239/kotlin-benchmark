@@ -243,13 +243,14 @@ questions.
                     </execution>
                 </executions>
                 <configuration>
-                    <executable>java</executable>
                     <arguments>
-                        <!--<argument>-XX:+PrintCompilation</argument>-->
-                        <!--<argument>-XX:MaxInlineSize=10</argument>-->
+                        <argument>-XX:+PrintCompilation</argument>
                         <!--<argument>-XX:+UnlockDiagnosticVMOptions</argument>-->
+                        <!--<argument>-XX:MaxInlineSize=1</argument>-->
+                        <!--<argument>-Xint</argument>-->
                         <!--<argument>-XX:+AggressiveOpts</argument>-->
                         <!--<argument>-XX:+PrintInlining</argument>-->
+                        <!--<argument>-XX:CompileThreshold=100</argument>-->
                         <argument>-jar</argument>
                         <argument>target/microbenchmarks.jar</argument>
                         <argument>${benchmarkRegexp}</argument>
@@ -266,6 +267,7 @@ questions.
                         <!--<argument>-o</argument>-->
                         <!--<argument>result.log</argument>-->
                     </arguments>
+                    <executable>java</executable>
                 </configuration>
             </plugin>
         </plugins>

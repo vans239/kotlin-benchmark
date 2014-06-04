@@ -33,7 +33,7 @@ public open class InliningWins {
 
     //    Param("100", "1000", "10000", "50000", "100000", "1000000", "5000000")
 //            [Param("100000","200000","300000","400000", "500000", "1000000")]
-    [Param("10000000")]
+    [Param("1000000")]
     private var elemCount: Int = 0
 
     [Setup]
@@ -113,7 +113,7 @@ public open class InliningWins {
 
 
 
-    //        [GenerateMicroBenchmark]
+    [GenerateMicroBenchmark]
     public fun twoFiltersInline1(bh1: BlackHole, bh2: BlackHole) {
         val r3 = diffObjects.inlineFilter { item -> item == "" }
         bh2.consume(r3);

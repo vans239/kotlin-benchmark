@@ -68,3 +68,12 @@ r.b.f.InliningWins.twoFiltersInlineCached        400000   avgt         4     878
 r.b.f.InliningWins.twoFiltersInlineCached        500000   avgt         4     9848.951      616.245    us/op
 r.b.f.InliningWins.twoFiltersInlineCached       1000000   avgt         4    19371.119      181.252    us/op
 
+Проверить на джаве переписать код полностью на инлайны и сравнить
+Вынести инициализацию из метода
+Суммировать asm
+
+
+r.b.f.ObjectInlining.inlinedVariantOfObservable     avgt         4        1.274        0.017    ns/op
+r.b.f.ObjectInlining.testmany2                      avgt         4        6.786        0.033    ns/op
+r.b.f.ObjectInlining.inlinedVariantOfObservable     avgt         4        1.911        0.201    ns/op
+r.b.f.ObjectInlining.testmany2                      avgt         4       21.243        0.207    ns/op

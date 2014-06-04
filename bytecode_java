@@ -1,0 +1,19 @@
+    292   26             kotlin.IntProgressionIterator::hasNext (5 bytes)
+    292   27             kotlin.IntIterator::next (5 bytes)
+    292   28             kotlin.IntIterator::next (8 bytes)
+    293   29             kotlin.IntProgressionIterator::nextInt (37 bytes)
+    293   30             ru.benchmark.functional.InliningWins::getObjects$b$0 (5 bytes)
+    294   31 %           ru.benchmark.functional.InliningWins::setup @ 23 (149 bytes)
+    732   47 %           ru.benchmark.functional.InliningWins::twoFiltersInline @ 30 (227 bytes)
+    768   48             ru.benchmark.functional.InliningWins::twoFiltersInline (227 bytes)
+
+
+
+    297   26             kotlin.IntProgressionIterator::hasNext (5 bytes)
+    297   27             kotlin.IntIterator::next (5 bytes)
+    297   28             kotlin.IntIterator::next (8 bytes)
+    298   29             kotlin.IntProgressionIterator::nextInt (37 bytes)
+    298   30             ru.benchmark.functional.InliningWins::getObjects$b$0 (5 bytes)
+    298   31 %           ru.benchmark.functional.InliningWins::setup @ 23 (149 bytes)
+    718   47 %           ru.benchmark.functional.InliningWins::twoFiltersInline1 @ 30 (113 bytes)
+    733   48             ru.benchmark.functional.InliningWins::twoFiltersInline1 (113 bytes)
